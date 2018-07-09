@@ -20,3 +20,5 @@ checkUser(){
         install
     fi
 }
+
+checkUser
