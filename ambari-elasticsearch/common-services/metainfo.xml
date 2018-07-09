@@ -23,23 +23,32 @@
             <version>6.3.0</version>
             <components>
                 <component>
-                    <name>MASTER</name>
-                    <displayName>Elasticsearch Master</displayName>
+                    <name>MASTER_NODE</name>
+                    <displayName>Master Node</displayName>
                     <category>MASTER</category>
                     <cardinality>1+</cardinality>
                     <commandScript>
-                        <script>scripts/master.py</script>
+                        <script>scripts/master_node.py</script>
                         <scriptType>PYTHON</scriptType>
                         <timeout>600</timeout>
                     </commandScript>
                 </component>
                 <component>
-                    <name>SLAVE</name>
-                    <displayName>Elasticsearch SLAVE</displayName>
+                    <name>DATA_NODE</name>
+                    <displayName>Data Node</displayName>
                     <category>SLAVE</category>
                     <cardinality>0+</cardinality>
+                    <dependencies>
+                        <dependency>
+                            <name>ELASTICSEARCH/MASTER_NODE</name>
+                            <scope>host</scope>
+                            <auto-deploy>
+                                <enabled>false</enabled>
+                            </auto-deploy>
+                        </dependency>
+                    </dependencies>
                     <commandScript>
-                        <script>scripts/master.py</script>
+                        <script>scripts/data_node.py</script>
                         <scriptType>PYTHON</scriptType>
                         <timeout>600</timeout>
                     </commandScript>
