@@ -1,0 +1,130 @@
+{
+  "ELASTICSEARCH": {
+    "service": [],
+    ELASTICSEARCH_SQL : [
+      {
+        "name": "elasticsearch_client_sql",
+        "label": "Elasticsearch sql Web UI",
+        "description": "如果Elasticsearch sql不可访问，则会触发此主机级警报。",
+        "interval": 1,
+        "scope": "ANY",
+        "source": {
+          "type": "WEB",
+          "uri": {
+            "http": "http://{{site-server-config/head_sql_bigdesk_server_host}}:{{site-server-config/head_sql_bigdesk_server_port}}/esql/",
+            "https": "{{config.properties/mapreduce.jobhistory.webapp.https.address}}",
+            "https_property": "HTTP_ONLY",
+            "https_property_value": "HTTPS_ONLY",
+            "kerberos_keytab": "{{config.properties/mapreduce.jobhistory.webapp.spnego-keytab-file}}",
+            "kerberos_principal": "{{config.properties/mapreduce.jobhistory.webapp.spnego-principal}}",
+            "connection_timeout": 5.0
+          },
+          "reporting": {
+            "ok": {
+              "text": "HTTP {0} response in {2:.3f}s"
+            },
+            "warning":{
+              "text": "HTTP {0} response from {1} in {2:.3f}s ({3})"
+            },
+            "critical": {
+              "text": "Connection failed to {1} ({3})"
+            }
+          }
+        }
+      },
+      {
+        "name": "elasticsearch_client_bigdesk",
+        "label": "Elasticsearch bigdesk Web UI",
+        "description": "如果Elasticsearch bigdesk不可访问，则会触发此主机级警报。",
+        "interval": 1,
+        "scope": "ANY",
+        "source": {
+          "type": "WEB",
+          "uri": {
+            "http": "http://{{site-server-config/head_sql_bigdesk_server_host}}:{{site-server-config/head_sql_bigdesk_server_port}}/bigdesk/",
+            "https": "{{config.properties/mapreduce.jobhistory.webapp.https.address}}",
+            "https_property": "HTTP_ONLY",
+            "https_property_value": "HTTPS_ONLY",
+            "kerberos_keytab": "{{config.properties/mapreduce.jobhistory.webapp.spnego-keytab-file}}",
+            "kerberos_principal": "{{config.properties/mapreduce.jobhistory.webapp.spnego-principal}}",
+            "connection_timeout": 5.0
+          },
+          "reporting": {
+            "ok": {
+              "text": "HTTP {0} response in {2:.3f}s"
+            },
+            "warning":{
+              "text": "HTTP {0} response from {1} in {2:.3f}s ({3})"
+            },
+            "critical": {
+              "text": "Connection failed to {1} ({3})"
+            }
+          }
+        }
+      },
+      {
+        "name": "elasticsearch_client_head",
+        "label": "Elasticsearch head Web UI",
+        "description": "如果Elasticsearch head不可访问，则会触发此主机级警报。",
+        "interval": 1,
+        "scope": "ANY",
+        "source": {
+          "type": "WEB",
+          "uri": {
+            "http": "http://{{site-server-config/head_sql_bigdesk_server_host}}:{{site-server-config/head_sql_bigdesk_server_port}}/head/",
+            "https": "{{config.properties/mapreduce.jobhistory.webapp.https.address}}",
+            "https_property": "HTTP_ONLY",
+            "https_property_value": "HTTPS_ONLY",
+            "kerberos_keytab": "{{config.properties/mapreduce.jobhistory.webapp.spnego-keytab-file}}",
+            "kerberos_principal": "{{config.properties/mapreduce.jobhistory.webapp.spnego-principal}}",
+            "connection_timeout": 5.0
+          },
+          "reporting": {
+            "ok": {
+              "text": "HTTP {0} response in {2:.3f}s"
+            },
+            "warning":{
+              "text": "HTTP {0} response from {1} in {2:.3f}s ({3})"
+            },
+            "critical": {
+              "text": "Connection failed to {1} ({3})"
+            }
+          }
+        }
+      }
+    ],
+    
+    "ELASTICSEARCH_MASTER": [
+      {
+        "name": "elasticsearch_server_webui",
+        "label": "Elasticsearch Server Web UI",
+        "description": "如果Elasticsearch Server Web UI不可访问，则会触发此主机级警报。",
+        "interval": 1,
+        "scope": "ANY",
+        "source": {
+          "type": "WEB",
+          "uri": {
+            "http": "http://{{elastic-config/web_server_host}}:{{elastic-config/http_port}}",
+            "https": "{{config.properties/mapreduce.jobhistory.webapp.https.address}}",
+            "https_property": "HTTP_ONLY",
+            "https_property_value": "HTTPS_ONLY",
+            "kerberos_keytab": "{{config.properties/mapreduce.jobhistory.webapp.spnego-keytab-file}}",
+            "kerberos_principal": "{{config.properties/mapreduce.jobhistory.webapp.spnego-principal}}",
+            "connection_timeout": 5.0
+          },
+          "reporting": {
+            "ok": {
+              "text": "HTTP {0} response in {2:.3f}s"
+            },
+            "warning":{
+              "text": "HTTP {0} response from {1} in {2:.3f}s ({3})"
+            },
+            "critical": {
+              "text": "Connection failed to {1} ({3})"
+            }
+          }
+        }
+      }
+    ]
+  }
+}

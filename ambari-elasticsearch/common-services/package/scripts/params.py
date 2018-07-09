@@ -35,8 +35,18 @@ elastic_log_dir = config['configurations']['elastic-env']['elastic_log_dir']
 elastic_pid_dir = config['configurations']['elastic-env']['elastic_pid_dir']
 elastic_pid_file = format("{elastic_pid_dir}/elasticsearch.pid")
 
+# plugin config
+elastic_web_plugin_server_base_dir = config['configurations']['elastic-plugin']['elasticsearch_plugin_base_dir']
+elastic_web_plugin_server_install_log= elastic_web_plugin_server_base_dir + '/elasticsearch-plugin-install.log'
+elastic_web_plugin_server_host= config['configurations']['elastic-plugin']['web_plugin_server_host']
+elastic_web_plugin_server_port= config['configurations']['elastic-plugin']['web_plugin_server_port']
+elastic_web_plugin_server_pid_file=format("{elastic_pid_dir}/web_plugin_server.pid")
+elastic_web_url= config['configurations']['elastic-plugin']['web_plugin_url']
+elastic_sql_url= config['configurations']['elastic-plugin']['sql_plugin_url']
+elastic_ik_url= config['configurations']['elastic-plugin']['ik_plugin_url']
+
 elastic_install_log = elastic_base_dir + '/elasticsearch-install.log'
-elastic_download = 'http://hdp-server/tars/elasticsearch-6.3.0.tar.gz'
+elastic_download = config['configurations']['elastic-env']['elastic_download']
 
 cluster_name = config['configurations']['elastic-config']['cluster_name']
 hostname = config['hostname']

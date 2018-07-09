@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+<configuration supports_final="true">
+    
+    <property>
+        <name>web_plugin_server_host</name>
+        <value>localhost</value>
+        <description>Elasticsearch web plugin(head sql bigdesk)  客户端部署的主机名</description>
+    </property>
+    <property>
+        <name>web_plugin_server_port</name>
+        <value>7070</value>
+        <description>Elasticsearch web plugin(head sql bigdesk) 客户端访问的端口号</description>
+    </property>
+    
+    <property>
+        <name>web_plugin_url</name>
+        <value>http://hdp-server/tars/elasticsearch-plugin.zip</value>
+        <description>Elasticsearch web plugin(head sql bigdesk) download from url</description>
+    </property>
+    <property>
+        <name>sql_plugin_url</name>
+        <value>http://hdp-server/tars/elasticsearch-sql-6.3.0.zip</value>
+        <description>download from url</description>
+    </property>
+    <property>
+        <name>ik_plugin_url</name>
+        <value>http://hdp-server/tars/elasticsearch-analysis-ik-6.3.0.zip</value>
+        <description>download from url</description>
+    </property>
+
+    <property>
+        <name>elasticsearch_plugin_base_dir</name>
+        <value>/opt/elasticsearch_plugin</value>
+        <description>Elasticsearch base directory</description>
+    </property>
+    <!--<property>
+	    <name>web_plugin_server_pid_dir</name>
+	    <value>/var/run/elasticsearch</value>
+	    <description>Elasticsearch web plugin server PID directory</description>
+    </property>-->
+
+</configuration>
