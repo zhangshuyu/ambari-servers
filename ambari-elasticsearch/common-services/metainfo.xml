@@ -34,12 +34,12 @@
                     </commandScript>
                 </component>
                 <component>
-                    <name>MASTER</name>
-                    <displayName>Elasticsearch MasterNode</displayName>
+                    <name>WEB_PLUGIN</name>
+                    <displayName>Elasticsearch Web Plugin</displayName>
                     <category>MASTER</category>
                     <cardinality>1</cardinality>
                     <commandScript>
-                        <script>scripts/master_node.py</script>
+                        <script>scripts/plugin.py</script>
                         <scriptType>PYTHON</scriptType>
                         <timeout>600</timeout>
                     </commandScript>
