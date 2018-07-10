@@ -80,6 +80,16 @@ class Master(Script):
         cmd = format("chown -R {elastic_user}:{elastic_group} {elastic_base_dir}")
         Execute(cmd)
 
+        # Install sql plugin
+        cmd = format("cd {elastic_base_dir}; ./bin/elasticsearch-plugin install {elastic_sql_url}")
+        Execute(cmd, user=params.elastic_user)
+
+        # Install ik plugin
+        cmd = format("cd {elastic_base_dir}; wget {elastic_ik_url} -O ik.tar.gz -a {elastic_install_log}")
+        Execute(cmd, user=params.elastic_user)
+        cmd = format("cd {elastic_base_dir}/plugin; tar -xf ik.tar.gz --strip-components=1")
+        Execute(cmd, user=params.elastic_user)
+
         # Remove Elasticsearch installation file
         cmd = format("cd {elastic_base_dir}; rm elasticsearch.tar.gz")
         Execute(cmd, user=params.elastic_user)
