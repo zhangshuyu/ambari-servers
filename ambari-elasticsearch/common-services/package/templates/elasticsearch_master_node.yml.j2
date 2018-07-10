@@ -43,6 +43,8 @@ network.host: {{hostname}}
 
 # Set a custom port for HTTP:
 http.port: {{http_port}}
+http.cors.enabled: true
+http.cors.allow-origin: /.*/
 
 # --------------------------------- Discovery ----------------------------------
 # Pass an initial list of hosts to perform discovery when new node is started:
@@ -68,12 +70,4 @@ action.destructive_requires_name: {{action_destructive_requires_name}}
 # Disabling security
 xpack.security.enabled: {{xpack_security_enabled}}
 
-
-#开启跨域访问支持，默认为false
-
-http.cors.enabled: true
-
-#跨域访问允许的域名地址，(允许所有域名)以上使用正则
-
-http.cors.allow-origin: /.*/
 

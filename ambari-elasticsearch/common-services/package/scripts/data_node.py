@@ -110,7 +110,7 @@ class Master(Script):
         configurations = params.config['configurations']['elastic-config']
 
         File(format("{elastic_conf_dir}/elasticsearch.yml"),
-             content=Template("elasticsearch4data_node.yml.j2",
+             content=Template("elasticsearch_data_node.yml.j2",
                               configurations=configurations),
              owner=params.elastic_user,
              group=params.elastic_group
