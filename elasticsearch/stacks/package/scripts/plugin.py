@@ -50,6 +50,8 @@ class Slave(Script):
              content=''
              )
 
+        cmd = format("cd {elastic_web_plugin_server_base_dir}; rm -rf {elastic_web_plugin_server_base_dir}/web-plugin")
+        Execute(cmd, user=params.elastic_user)
         # Download Elasticsearch Plugin
         cmd = format("cd {elastic_web_plugin_server_base_dir}; wget {elastic_web_url} -O elasticsearch-web-plugin.zip -a {elastic_web_plugin_server_install_log}")
         Execute(cmd, user=params.elastic_user)
