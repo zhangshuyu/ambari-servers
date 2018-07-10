@@ -85,8 +85,8 @@ class Slave(Script):
         File(format("{elastic_web_plugin_server_base_dir}/web-plugin/es-site/site-server/site_configuration.json"),
              content=Template("elasticsearch_plugin_config.json.j2",
                               configurations=configurations),
-             owner="root",
-             group="root"
+             owner=params.elastic_user,
+             group=params.elastic_group
             )
 
 
@@ -112,7 +112,7 @@ class Slave(Script):
         #time.sleep(5)
         #site_server_pid = "` ps -ax |grep node-server.js | grep -v grep |awk '{print $1}' `"
         cmd=format("cd {elastic_web_plugin_server_base_dir}/web-plugin/es-site/site-server; ./start.sh > {params.elastic_web_pid_file}")
-        Execute(cmd)
+        Execute(cmd, user=params.elastic_user)
 
 
     def status(self, env):

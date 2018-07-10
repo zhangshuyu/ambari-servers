@@ -7,6 +7,9 @@ install(){
     mkdir -p /var/lib/ambari-server/resources/stacks/HDP/2.6/services/ELASTICSEARCH
     fi
     cp -R stacks/* /var/lib/ambari-server/resources/stacks/HDP/2.6/services/ELASTICSEARCH/
+    cp -R common-services/configuration /var/lib/ambari-server/resources/stacks/HDP/2.6/services/ELASTICSEARCH/
+    cp -R common-services/package /var/lib/ambari-server/resources/stacks/HDP/2.6/services/ELASTICSEARCH/
+    cp -R common-services/quicklinks /var/lib/ambari-server/resources/stacks/HDP/2.6/services/ELASTICSEARCH/
 
     # common-services
     if [ ! -d "/var/lib/ambari-server/resources/common-services/ELASTICSEARCH/6.3.0" ];then

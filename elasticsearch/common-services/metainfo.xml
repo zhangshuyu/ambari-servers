@@ -64,17 +64,19 @@
             </osSpecifics>
 
             <configuration-dependencies>
-                  <config-type>elastic-env</config-type>
-                  <config-type>elastic-config</config-type>
+                <config-type>elastic-env</config-type>
+                <config-type>elastic-config</config-type>
+                <config-type>elastic-plugin</config-type>
+                <config-type>jvm-options</config-type>
             </configuration-dependencies>
 
             <restartRequiredAfterChange>false</restartRequiredAfterChange>
 
             <quickLinksConfigurations>
-              <quickLinksConfiguration>
-                <fileName>quicklinks.json</fileName>
-                <default>true</default>
-              </quickLinksConfiguration>
+                <quickLinksConfiguration>
+                    <fileName>quicklinks.json</fileName>
+                    <default>true</default>
+                </quickLinksConfiguration>
             </quickLinksConfigurations>
         </service>
     </services>
