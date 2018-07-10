@@ -25,7 +25,7 @@
               "https_property": "web_plugin_server_port",
               "https_default_port": "7070",
               "regex": "^(\\d+)$",
-              "site": "elastic_plugin"
+              "site": "elastic-plugin"
             }
           },
           {
@@ -40,7 +40,7 @@
               "https_property": "web_plugin_server_port",
               "https_default_port": "7070",
               "regex": "^(\\d+)$",
-              "site": "elastic_plugin"
+              "site": "elastic-plugin"
             }
           },
           {
@@ -55,7 +55,7 @@
               "https_property": "web_plugin_server_port",
               "https_default_port": "7070",
               "regex": "^(\\d+)$",
-              "site": "elastic_plugin"
+              "site": "elastic-plugin"
             }
           }
         ]
