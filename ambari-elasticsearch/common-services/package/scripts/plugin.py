@@ -82,7 +82,7 @@ class Slave(Script):
 
         configurations = params.config['configurations']['elastic-plugin']
 
-        File(format("{elastic_web_plugin_server_base_dir}/elasticsearch-web-plugin/es-site/site-server/site_configuration.json"),
+        File(format("{elastic_web_plugin_server_base_dir}/es-site/site-server/site_configuration.json"),
              content=Template("elasticsearch_plugin_config.json.j2",
                               configurations=configurations),
              owner="root",
