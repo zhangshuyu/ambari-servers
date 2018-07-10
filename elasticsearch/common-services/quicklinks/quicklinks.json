@@ -20,12 +20,12 @@
             "requires_user_name": "false",
             "url":"%@://%@:%@/head/",
             "port":{
-              "http_property": "elastic_web_plugin_server_port",
+              "http_property": "web_plugin_server_port",
               "http_default_port": "7070",
-              "https_property": "elastic_web_plugin_server_port",
+              "https_property": "web_plugin_server_port",
               "https_default_port": "7070",
               "regex": "^(\\d+)$",
-              "site": "site-server-config"
+              "site": "elastic_plugin"
             }
           },
           {
@@ -35,12 +35,12 @@
             "requires_user_name": "false",
             "url":"%@://%@:%@/esql/",
             "port":{
-              "http_property": "elastic_web_plugin_server_port",
+              "http_property": "web_plugin_server_port",
               "http_default_port": "7070",
-              "https_property": "elastic_web_plugin_server_port",
+              "https_property": "web_plugin_server_port",
               "https_default_port": "7070",
               "regex": "^(\\d+)$",
-              "site": "site-server-config"
+              "site": "elastic_plugin"
             }
           },
           {
@@ -50,12 +50,12 @@
             "requires_user_name": "false",
             "url":"%@://%@:%@/bigdesk/",
             "port":{
-              "http_property": "elastic_web_plugin_server_port",
+              "http_property": "web_plugin_server_port",
               "http_default_port": "7070",
-              "https_property": "elastic_web_plugin_server_port",
+              "https_property": "web_plugin_server_port",
               "https_default_port": "7070",
               "regex": "^(\\d+)$",
-              "site": "site-server-config"
+              "site": "elastic_plugin"
             }
           }
         ]
