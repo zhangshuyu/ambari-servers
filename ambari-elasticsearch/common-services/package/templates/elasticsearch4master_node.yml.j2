@@ -68,3 +68,12 @@ action.destructive_requires_name: {{action_destructive_requires_name}}
 # Disabling security
 xpack.security.enabled: {{xpack_security_enabled}}
 
+
+#开启跨域访问支持，默认为false
+
+http.cors.enabled: true
+
+#跨域访问允许的域名地址，(允许所有域名)以上使用正则
+
+http.cors.allow-origin: /.*/
+
