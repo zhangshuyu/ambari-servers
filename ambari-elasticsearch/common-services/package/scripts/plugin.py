@@ -82,7 +82,7 @@ class Slave(Script):
 
         configurations = params.config['configurations']['elastic-plugin']
 
-        File(format("{elastic_web_plugin_server_base_dir}/plugin-sites/es-site/site-server/site_configuration.json"),
+        File(format("{elastic_web_plugin_server_base_dir}/web-plugin/es-site/site-server/site_configuration.json"),
              content=Template("elasticsearch_plugin_config.json.j2",
                               configurations=configurations),
              owner="root",
@@ -101,7 +101,7 @@ class Slave(Script):
         env.set_params(params)
 
         #Execute("kill ` ps -ax |grep node-server.js | grep -v grep |awk '{print $1}' `")
-        kill_process(params.elastic_web_plugin_server_pid_file, params.elastic_user, params.elastic_log_dir)
+        kill_process(params.elastic_web_pid_file, params.elastic_user, params.elastic_log_dir)
 
 
     def start(self, env):
@@ -109,11 +109,10 @@ class Slave(Script):
         env.set_params(params)
         self.configure(env)
 
-        Execute(format("cd {elastic_web_plugin_server_base_dir}/plugin-sites/es-site/site-server;./start.sh"))
         #time.sleep(5)
         #site_server_pid = "` ps -ax |grep node-server.js | grep -v grep |awk '{print $1}' `"
-        #cmd=format("echo {site_server_pid} >{params.site_server_pid_file}")
-        #Execute(cmd)
+        cmd=format("cd {elastic_web_plugin_server_base_dir}/web-plugin/es-site/site-server; ./start.sh > {params.elastic_web_pid_file}")
+        Execute(cmd)
 
 
     def status(self, env):
@@ -123,7 +122,7 @@ class Slave(Script):
         # This allows us to access the params.elastic_pid_file property as
         #  format('{elastic_pid_file}')
         env.set_params(status_params)
-        check_process_status(status_params.elastic_web_plugin_server_pid_file)
+        check_process_status(status_params.elastic_web_pid_file)
 
 
 if __name__ == "__main__":
