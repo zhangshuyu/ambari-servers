@@ -23,7 +23,7 @@
             <version>6.3.0</version>
             <components>
                 <component>
-                    <name>MASTER</name>
+                    <name>MASTER_NODE</name>
                     <displayName>Elasticsearch MasterNode</displayName>
                     <category>MASTER</category>
                     <cardinality>1+</cardinality>
@@ -45,7 +45,7 @@
                     </commandScript>
                 </component>
                 <component>
-                    <name>SLAVE</name>
+                    <name>DATA_NODE</name>
                     <displayName>Elasticsearch DataNode</displayName>
                     <category>SLAVE</category>
                     <cardinality>0+</cardinality>
