@@ -85,11 +85,11 @@ class Master(Script):
         Execute(cmd, user=params.elastic_user)
 
         # Install ik plugin
-        cmd = format("cd {elastic_base_dir}/plugins; wget {elastic_ik_url} -O ik.tar.gz -a {elastic_install_log}")
+        cmd = format("cd {elastic_base_dir}/plugins; wget {elastic_ik_url} -O ik.zip -a {elastic_install_log}")
         Execute(cmd, user=params.elastic_user)
-        cmd = format("cd {elastic_base_dir}/plugins; tar -xf ik.tar.gz --strip-components=1")
+        cmd = format("cd {elastic_base_dir}/plugins; unzip ik.zip -d ik")
         Execute(cmd, user=params.elastic_user)
-        cmd = format("cd {elastic_base_dir}/plugins; rm ik.tar.gz")
+        cmd = format("cd {elastic_base_dir}/plugins; rm ik.zip")
         Execute(cmd, user=params.elastic_user)
 
         # Remove Elasticsearch installation file
