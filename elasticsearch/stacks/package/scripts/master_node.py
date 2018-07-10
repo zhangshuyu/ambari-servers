@@ -81,10 +81,14 @@ class Master(Script):
         Execute(cmd)
 
         # Install sql plugin
+        cmd = format("cd {elastic_base_dir}; rm -rf {elastic_base_dir}/plugins/sql")
+        Execute(cmd, user=params.elastic_user)
         cmd = format("cd {elastic_base_dir}; ./bin/elasticsearch-plugin install {elastic_sql_url}")
         Execute(cmd, user=params.elastic_user)
 
         # Install ik plugin
+        cmd = format("cd {elastic_base_dir}; rm -rf {elastic_base_dir}/plugins/ik")
+        Execute(cmd, user=params.elastic_user)
         cmd = format("cd {elastic_base_dir}/plugins; wget {elastic_ik_url} -O ik.zip -a {elastic_install_log}")
         Execute(cmd, user=params.elastic_user)
         cmd = format("cd {elastic_base_dir}/plugins; unzip ik.zip -d ik")
