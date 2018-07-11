@@ -16,7 +16,7 @@
           {
             "name": "elasticsearch_head",
             "label": "Elasticsearch Head",
-            "component_name": "ELASTICSEARCH_SQL",
+            "component_name": "WEB_PLUGIN",
             "requires_user_name": "false",
             "url":"%@://%@:%@/head/",
             "port":{
@@ -31,7 +31,7 @@
           {
             "name": "elasticsearch_sql",
             "label": "Elasticsearch Sql",
-            "component_name": "ELASTICSEARCH_SQL",
+            "component_name": "WEB_PLUGIN",
             "requires_user_name": "false",
             "url":"%@://%@:%@/esql/",
             "port":{
@@ -46,7 +46,7 @@
           {
             "name": "elasticsearch_bigdesk",
             "label": "Elasticsearch Bigdesk",
-            "component_name": "ELASTICSEARCH_SQL",
+            "component_name": "WEB_PLUGIN",
             "requires_user_name": "false",
             "url":"%@://%@:%@/bigdesk/",
             "port":{
