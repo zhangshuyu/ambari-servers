@@ -11,10 +11,14 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+import grp
+import pwd
+
 
 from resource_management.core.exceptions import ClientComponentHasNoStatus
 from resource_management.core.resources.system import Execute
 from resource_management.libraries.script.script import Script
+
 
 class Cli(Script):
     def install(self, env):

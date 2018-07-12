@@ -14,6 +14,8 @@
 
 import uuid
 import os.path as path
+import grp
+import pwd
 
 from resource_management.libraries.script.script import Script
 from resource_management.core.resources.system import Execute
