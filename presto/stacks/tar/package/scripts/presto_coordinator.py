@@ -57,7 +57,7 @@ class Coordinator(Script):
 
         Execute('rm -rf {0} {1} {2}'.format(params.presto_base_dir, params.presto_log_dir, params.presto_pid_dir))
         # Create Presto directories
-        Directory([params.presto_base_dir, params.presto_log_dir, params.presto_pid_dir],
+        Directory([params.presto_base_dir, params.presto_log_dir, params.presto_pid_dir, params.presto_node_data_dir, params.presto_catalog_dir],
                   mode=0755,
                   cd_access='a',
                   owner=params.presto_user,
