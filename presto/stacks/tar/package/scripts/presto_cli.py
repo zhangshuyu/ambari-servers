@@ -18,6 +18,7 @@ import pwd
 import grp
 import signal
 import time
+from resource_management import *
 
 
 from resource_management.core.exceptions import ClientComponentHasNoStatus
