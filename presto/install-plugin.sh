@@ -6,7 +6,7 @@ install(){
     echo "创建 /var/lib/ambari-server/resources/stacks/HDP/2.6/services/PRESTO"
     mkdir -p /var/lib/ambari-server/resources/stacks/HDP/2.6/services/PRESTO
     fi
-    cp -R stacks/* /var/lib/ambari-server/resources/stacks/HDP/2.6/services/PRESTO/
+    cp -R stacks/tar/* /var/lib/ambari-server/resources/stacks/HDP/2.6/services/PRESTO/
 }
 
 checkUser(){

@@ -21,9 +21,38 @@ from common import PRESTO_CLI_URL
 
 class Cli(Script):
     def install(self, env):
-        Execute('mkdir -p /usr/lib/presto/bin')
-        Execute('wget --no-check-certificate {0} -O /usr/lib/presto/bin/presto-cli'.format(PRESTO_CLI_URL))
-        Execute('chmod +x /usr/lib/presto/bin/presto-cli')
+        import params
+
+        # Install dependent packages
+        self.install_packages(env)
+
+        # Create user and group for Presto if they don't exist
+        try:
+            grp.getgrnam(params.presto_group)
+        except KeyError:
+            Group(group_name=params.presto_group)
+
+        try:
+            pwd.getpwnam(params.presto_user)
+        except KeyError:
+            User(username=params.presto_user,
+                 gid=params.presto_group,
+                 groups=[params.presto_group],
+                 ignore_failures=True
+                 )
+
+        Execute('rm -rf {0}/bin/presto-cli'.format(params.presto_base_dir), user=params.presto_user)
+        # Create Presto directories
+        Directory([params.presto_base_dir, params.presto_log_dir, params.presto_pid_dir],
+                  mode=0755,
+                  cd_access='a',
+                  owner=params.presto_user,
+                  group=params.presto_group,
+                  create_parents=True
+                  )
+
+        Execute('wget --no-check-certificate {0} -O {1}/bin/presto-cli'.format(params.presto_cli_download_url, params.presto_base_dir), user=params.presto_user)
+        Execute('chmod +x {0}/bin/presto-cli'.format(params.presto_base_dir), user=params.presto_user)
 
     def status(self, env):
         raise ClientComponentHasNoStatus()
