@@ -41,19 +41,21 @@ class Coordinator(Script):
         self.install_packages(env)
 
         # Create user and group for Presto if they don't exist
-        try:
-            grp.getgrnam(params.presto_group)
-        except KeyError:
-            Group(group_name=params.presto_group)
-
-        try:
-            pwd.getpwnam(params.presto_user)
-        except KeyError:
-            User(username=params.presto_user,
-                 gid=params.presto_group,
-                 groups=[params.presto_group],
-                 ignore_failures=True
-                 )
+        # try:
+        #     grp.getgrnam(params.presto_group)
+        # except KeyError:
+        #     Group(group_name=params.presto_group)
+        #
+        # try:
+        #     pwd.getpwnam(params.presto_user)
+        # except KeyError:
+        #     User(username=params.presto_user,
+        #          gid=params.presto_group,
+        #          groups=[params.presto_group],
+        #          ignore_failures=True
+        #          )
+        Execute('groupadd {0}'.format(params.presto_group))
+        Execute('useradd -g {0} {1}'.format(params.presto_group, params.presto_user))
 
         Execute('rm -rf {0} {1} {2}'.format(params.presto_base_dir, params.presto_log_dir, params.presto_pid_dir))
         # Create Presto directories
