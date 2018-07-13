@@ -11,14 +11,6 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-import sys
-import os
-import glob
-import pwd
-import grp
-import signal
-import time
-from resource_management import *
 
 
 from resource_management.core.exceptions import ClientComponentHasNoStatus
@@ -32,17 +24,6 @@ class Cli(Script):
         env.set_params(params)
         # Install dependent packages
         self.install_packages(env)
-
-        # Create user and group for Presto if they don't exist
-        try: grp.getgrnam(params.presto_group)
-        except KeyError: Group(group_name=params.presto_group)
-
-        try: pwd.getpwnam(params.presto_user)
-        except KeyError: User(username=params.presto_user,
-                 gid=params.presto_group,
-                 groups=[params.presto_group],
-                 ignore_failures=True
-                 )
 
         Execute('rm -rf /usr/lib/presto/bin')
         # Create Presto directories
