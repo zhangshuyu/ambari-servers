@@ -48,7 +48,7 @@ class Cli(Script):
                  ignore_failures=True
                  )
 
-        Execute('rm -rf /usr/lib/presto/bin', user=params.presto_user)
+        Execute('rm -rf /usr/lib/presto/bin')
         # Create Presto directories
         Directory(['/usr/lib/presto/bin'],
                   mode=0755,
@@ -57,8 +57,8 @@ class Cli(Script):
                   group=params.presto_group,
                   create_parents=True
                   )
-        Execute('wget --no-check-certificate {0} -O /usr/lib/presto/bin/presto-cli'.format(params.presto_cli_download_url, params.presto_base_dir), user=params.presto_user)
-        Execute('chmod +x /usr/lib/presto/bin/presto-cli', user=params.presto_user)
+        Execute('wget --no-check-certificate {0} -O /usr/lib/presto/bin/presto-cli'.format(params.presto_cli_download_url, params.presto_base_dir))
+        Execute('chmod +x /usr/lib/presto/bin/presto-cli')
 
     def status(self, env):
         raise ClientComponentHasNoStatus()
