@@ -37,15 +37,15 @@ class Coordinator(Script):
             host_info
         self.configure(env)
         Execute('{0} start'.format(daemon_control_script))
-        if 'presto_worker_hosts' in host_info.keys():
-            all_hosts = host_info['presto_worker_hosts'] + \
-                host_info['presto_coordinator_hosts']
-        else:
-            all_hosts = host_info['presto_coordinator_hosts']
-        smoketest_presto(
-            PrestoClient('localhost','root',
-                         config_properties['http-server.http.port']),
-            all_hosts)
+        # if 'presto_worker_hosts' in host_info.keys():
+        #     all_hosts = host_info['presto_worker_hosts'] + \
+        #         host_info['presto_coordinator_hosts']
+        # else:
+        #     all_hosts = host_info['presto_coordinator_hosts']
+        # smoketest_presto(
+        #     PrestoClient('localhost','root',
+        #                  config_properties['http-server.http.port']),
+        #     all_hosts)
 
     def status(self, env):
         from params import daemon_control_script
