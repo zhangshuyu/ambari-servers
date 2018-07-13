@@ -96,9 +96,12 @@ class Worker(Script):
         import params
         self.configure(env)
         Execute('cd {0};bin/launcher start --launcher-log-file {1} --server-log-file {2}'.format(params.presto_base_dir, params.presto_launcher_log_file, params.presto_server_log_file), user=params.presto_user)
+        # create presto server pid file
+        Execute('cat {0} > {1}'.format(params.presto_launcher_pid, params.presto_server_pid), user=params.presto_user)
 
     def status(self, env):
         import params
+        env.set_params(params)
         check_process_status(params.presto_server_pid)
 
     def configure(self, env):

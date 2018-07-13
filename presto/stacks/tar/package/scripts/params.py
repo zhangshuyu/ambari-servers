@@ -34,7 +34,8 @@ presto_install_log = presto_base_dir + 'presto-install.log'
 presto_node_data_dir = presto_base_dir + "/data"
 presto_catalog_dir = presto_base_dir + "/etc/catalog"
 presto_plugin_dir = presto_base_dir + "/plugin"
-presto_server_pid = presto_node_data_dir + '/var/run/launcher.pid'
+presto_launcher_pid = presto_node_data_dir + '/var/run/launcher.pid'
+presto_server_pid = presto_pid_dir + '/presto.pid'
 
 node_properties = config['configurations']['node.properties']
 jvm_config = config['configurations']['jvm.config']
