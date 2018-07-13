@@ -54,16 +54,14 @@ class Coordinator(Script):
         #          groups=[params.presto_group],
         #          ignore_failures=True
         #          )
-        # try:
-        #     Execute('groupadd {0}'.format(params.presto_group))
-        # except ExecuteError:
-        #     print ""
-        # try:
-        #     Execute('useradd -g {0} {1}'.format(params.presto_group, params.presto_user))
-        # except ExecuteError:
-        #     print ""
-        Execute('groupadd {0}'.format(params.presto_group))
-        Execute('useradd -g {0} {1}'.format(params.presto_group, params.presto_user))
+        try:
+            Execute('groupadd {0}'.format(params.presto_group))
+        except ExecutionFailed:
+            print ""
+        try:
+            Execute('useradd -g {0} {1}'.format(params.presto_group, params.presto_user))
+        except ExecutionFailed:
+            print ""
 
         Execute('rm -rf {0} {1} {2}'.format(params.presto_base_dir, params.presto_log_dir, params.presto_pid_dir))
         # Create Presto directories
