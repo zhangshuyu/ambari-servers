@@ -103,12 +103,12 @@ class Coordinator(Script):
         import params
 
         self.configure(env)
-        Execute('cd {0};bin/launcher start --launcher-config {1}/bin/launcher.properties\
-         --data-dir {2}\
-         --node-config {3}/node.properties\
-         --jvm-config {4}/jvm.config\
-         --config {5}/config.properties\
-         --launcher-log-file {6}\
+        Execute('{0}/bin/launcher start --launcher-config {1}/bin/launcher.properties\
+         --data-dir {2} \
+         --node-config {3}/node.properties \
+         --jvm-config {4}/jvm.config \
+         --config {5}/config.properties \
+         --launcher-log-file {6} \
          --server-log-file {7}'
                 .format(params.presto_base_dir,
                         params.presto_base_dir,
@@ -122,15 +122,15 @@ class Coordinator(Script):
         # create presto server pid file
         Execute('cat {0} > {1}'.format(params.presto_launcher_pid, params.presto_server_pid), user=params.presto_user)
 
-        if 'presto_worker_hosts' in params.host_info.keys():
-            all_hosts = params.host_info['presto_worker_hosts'] + \
-                        params.host_info['presto_coordinator_hosts']
-        else:
-            all_hosts = params.host_info['presto_coordinator_hosts']
-        smoketest_presto(
-            PrestoClient('localhost', params.presto_user,
-                         params.config_properties['http-server.http.port']),
-            all_hosts)
+        # if 'presto_worker_hosts' in params.host_info.keys():
+        #     all_hosts = params.host_info['presto_worker_hosts'] + \
+        #                 params.host_info['presto_coordinator_hosts']
+        # else:
+        #     all_hosts = params.host_info['presto_coordinator_hosts']
+        # smoketest_presto(
+        #     PrestoClient('localhost', params.presto_user,
+        #                  params.config_properties['http-server.http.port']),
+        #     all_hosts)
 
     def status(self, env):
         import params
