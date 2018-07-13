@@ -271,13 +271,13 @@
       {
         "config": "env.properties/presto_server_download_url",
         "widget": {
-          "type": "directory"
+          "type": "text-area"
         }
       },
       {
         "config": "env.properties/presto_cli_download_url",
         "widget": {
-          "type": "directory"
+          "type": "text-area"
         }
       }
     ]
