@@ -105,7 +105,7 @@ class Coordinator(Script):
         else:
             all_hosts = params.host_info['presto_coordinator_hosts']
         smoketest_presto(
-            PrestoClient('localhost', 'root',
+            PrestoClient('localhost', params.presto_user,
                          params.config_properties['http-server.http.port']),
             all_hosts)
 
