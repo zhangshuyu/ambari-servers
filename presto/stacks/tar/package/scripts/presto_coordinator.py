@@ -109,8 +109,7 @@ class Coordinator(Script):
          --jvm-config {4}/jvm.config \
          --config {5}/config.properties \
          --launcher-log-file {6} \
-         --server-log-file {7}'
-        .format(params.presto_base_dir,
+         --server-log-file {7}'.format(params.presto_base_dir,
                 params.presto_base_dir,
                 params.presto_node_data_dir,
                 params.presto_config_dir,
