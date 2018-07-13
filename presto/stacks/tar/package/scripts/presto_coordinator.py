@@ -111,6 +111,7 @@ class Coordinator(Script):
 
     def status(self, env):
         import params
+        env.set_params(params)
         check_process_status(params.presto_server_pid)
 
     def configure(self, env):
