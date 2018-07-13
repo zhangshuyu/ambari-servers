@@ -34,15 +34,11 @@ class Cli(Script):
         self.install_packages(env)
 
         # Create user and group for Presto if they don't exist
-        try:
-            grp.getgrnam(params.presto_group)
-        except KeyError:
-            Group(group_name=params.presto_group)
+        try: grp.getgrnam(params.presto_group)
+        except KeyError: Group(group_name=params.presto_group)
 
-        try:
-            pwd.getpwnam(params.presto_user)
-        except KeyError:
-            User(username=params.presto_user,
+        try: pwd.getpwnam(params.presto_user)
+        except KeyError: User(username=params.presto_user,
                  gid=params.presto_group,
                  groups=[params.presto_group],
                  ignore_failures=True
