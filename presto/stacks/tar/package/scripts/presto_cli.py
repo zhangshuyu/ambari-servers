@@ -29,7 +29,7 @@ from resource_management.libraries.script.script import Script
 class Cli(Script):
     def install(self, env):
         import params
-
+        env.set_params(params)
         # Install dependent packages
         self.install_packages(env)
 
