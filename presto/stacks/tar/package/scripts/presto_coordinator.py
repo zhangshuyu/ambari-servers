@@ -117,8 +117,9 @@ class Coordinator(Script):
                 params.presto_config_dir,
                 params.presto_launcher_log_file,
                 params.presto_server_log_file)
-        Execute('echo {0} > {1}/bin/presto'.format(cmd, params.presto_base_dir), user=params.presto_user)
-        Execute(cmd, user=params.presto_user)
+        Execute('echo {0} > {1}/bin/start.sh'.format(cmd, params.presto_base_dir), user=params.presto_user)
+        Execute('chmod +x {0}/bin/start.sh'.format(params.presto_base_dir), user=params.presto_user)
+        Execute('{0}/bin/start.sh'.format(params.presto_base_dir), user=params.presto_user)
 
         # create presto server pid file
         Execute('cat {0} > {1}'.format(params.presto_launcher_pid, params.presto_server_pid), user=params.presto_user)
