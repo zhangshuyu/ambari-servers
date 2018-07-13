@@ -83,7 +83,7 @@ class Coordinator(Script):
         Execute('chown -R {0}:{1} {2}'.format(params.presto_user, params.presto_group, params.presto_base_dir))
 
         # create presto config directories
-        Execute('mkdir -p {0}/etc/catalog'.format(params.presto_base_dir), user=params.presto_user)
+        Execute('mkdir -p {0}'.format(params.presto_catalog_dir), user=params.presto_user)
 
         # remove presto installation file
         Execute('cd {0}; rm presto_server.tar.gz'.format(params.presto_base_dir), user=params.presto_user)
@@ -97,7 +97,21 @@ class Coordinator(Script):
         import params
 
         self.configure(env)
-        Execute('cd {0};bin/launcher start --launcher-log-file {1} --server-log-file {2}'.format(params.presto_base_dir, params.presto_launcher_log_file, params.presto_server_log_file), user=params.presto_user)
+        Execute('cd {0};bin/launcher start --launcher-config {1}/bin/launcher.properties\
+         --data-dir {2}\
+         --node-config {3}/node.properties\
+         --jvm-config {4}/jvm.config\
+         --config {5}/config.properties\
+         --launcher-log-file {6}\
+         --server-log-file {7}'
+                .format(params.presto_base_dir,
+                        params.presto_base_dir,
+                        params.presto_node_data_dir,
+                        params.presto_config_dir,
+                        params.presto_config_dir,
+                        params.presto_config_dir,
+                        params.presto_launcher_log_file,
+                        params.presto_server_log_file), user=params.presto_user)
 
         # create presto server pid file
         Execute('cat {0} > {1}'.format(params.presto_launcher_pid, params.presto_server_pid), user=params.presto_user)
