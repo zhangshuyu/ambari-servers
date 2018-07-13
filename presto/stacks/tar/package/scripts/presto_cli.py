@@ -12,7 +12,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-
 from resource_management.core.exceptions import ClientComponentHasNoStatus
 from resource_management.core.resources.system import Execute
 from resource_management.libraries.script.script import Script
@@ -26,14 +25,7 @@ class Cli(Script):
         self.install_packages(env)
 
         Execute('rm -rf /usr/lib/presto/bin')
-        # Create Presto directories
-        Directory(['/usr/lib/presto/bin'],
-                  mode=0755,
-                  cd_access='a',
-                  owner=params.presto_user,
-                  group=params.presto_group,
-                  create_parents=True
-                  )
+        Execute('mkdir -p /usr/lib/presto/bin')
         Execute('wget --no-check-certificate {0} -O /usr/lib/presto/bin/presto-cli'.format(params.presto_cli_download_url, params.presto_base_dir))
         Execute('chmod +x /usr/lib/presto/bin/presto-cli')
 
