@@ -18,7 +18,7 @@ import os.path as path
 from resource_management.libraries.script.script import Script
 from resource_management.core.resources.system import Execute
 from resource_management.core.exceptions import ExecutionFailed
-from common import PRESTO_RPM_URL, PRESTO_RPM_NAME, create_connectors, \
+from common import create_connectors, \
     delete_connectors
 
 

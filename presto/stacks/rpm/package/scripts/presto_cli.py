@@ -16,7 +16,6 @@ from resource_management.core.exceptions import ClientComponentHasNoStatus
 from resource_management.core.resources.system import Execute
 from resource_management.libraries.script.script import Script
 
-from common import PRESTO_CLI_URL
 
 
 class Cli(Script):

@@ -20,11 +20,11 @@ from resource_management.core.resources.system import Execute
 
 script_dir = os.path.dirname(os.path.realpath(__file__))
 config = ConfigParser.ConfigParser()
-config.readfp(open(os.path.join(script_dir, 'download.ini')))
-
-PRESTO_RPM_URL = config.get('download', 'presto_rpm_url')
-PRESTO_RPM_NAME = PRESTO_RPM_URL.split('/')[-1]
-PRESTO_CLI_URL = config.get('download', 'presto_cli_url')
+# config.readfp(open(os.path.join(script_dir, 'download.ini')))
+#
+# PRESTO_RPM_URL = config.get('download', 'presto_rpm_url')
+# PRESTO_RPM_NAME = PRESTO_RPM_URL.split('/')[-1]
+# PRESTO_CLI_URL = config.get('download', 'presto_cli_url')
 
 def create_connectors(node_properties, connectors_to_add):
     if not connectors_to_add:
