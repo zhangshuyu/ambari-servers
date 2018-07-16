@@ -15,6 +15,7 @@
 import uuid
 import os.path as path
 
+from resource_management.libraries.functions import check_process_status
 from resource_management.libraries.script.script import Script
 from resource_management.core.resources.system import Execute
 from resource_management.core.exceptions import ExecutionFailed
@@ -43,9 +44,9 @@ class Worker(Script):
         Execute('{0} start'.format(daemon_control_script))
 
     def status(self, env):
-        from params import daemon_control_script
-        Execute('{0} status'.format(daemon_control_script))
-
+        from params import daemon_control_script, presto_pid_file
+        # Execute('{0} status'.format(daemon_control_script))
+        check_process_status(presto_pid_file)
     def configure(self, env):
         from params import node_properties, jvm_config, config_properties, \
             config_directory, memory_configs, connectors_to_add, connectors_to_delete

@@ -22,6 +22,7 @@ config = Script.get_config()
 presto_rpm_download_url = config['configurations']['env.properties']['presto_rpm_download_url']
 presto_rpm_dir_name = presto_rpm_download_url.split('/')[-1]
 presto_cli_download_url = config['configurations']['env.properties']['presto_cli_download_url']
+presto_pid_file = "/var/lib/presto/var/run/launcher.pid"
 
 node_properties = config['configurations']['node.properties']
 jvm_config = config['configurations']['jvm.config']
