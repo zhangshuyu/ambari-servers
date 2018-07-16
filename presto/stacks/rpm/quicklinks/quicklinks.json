@@ -1,0 +1,33 @@
+{
+      "name": "default",
+      "description": "default quick links configuration",
+      "configuration": {
+        "protocol": {
+          "type":"https",
+          "checks":[
+            {
+              "property":"HTTP_ONLY",
+              "desired":"HTTPS_ONLY",
+              "site":"config.properties"
+            }
+          ]
+        },
+        "links": [
+          {
+            "name": "presto_web",
+            "label": "Presto Web",
+            "component_name": "PRESTO_WEB",
+            "requires_user_name": "false",
+            "url":"%@://%@:%@",
+            "port":{
+              "http_property": "http-server.http.port",
+              "http_default_port": "8252",
+              "https_property": "http-server.http.port",
+              "https_default_port": "8252",
+              "regex": "^(\\d+)$",
+              "site": "config.properties"
+            }
+          }
+        ]
+      }
+}
