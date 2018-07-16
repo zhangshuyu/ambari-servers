@@ -15,10 +15,9 @@
 import uuid
 import os.path as path
 
-from resource_management.libraries.functions import check_process_status
+from resource_management import *
 from resource_management.libraries.script.script import Script
 from resource_management.core.resources.system import Execute
-from resource_management.core.exceptions import ExecutionFailed
 from common import create_connectors,\
     delete_connectors
 from presto_client import smoketest_presto, PrestoClient
