@@ -23,9 +23,13 @@ from presto_client import smoketest_presto, PrestoClient
 
 class Coordinator(Script):
     def install(self, env):
-        from params import java_home
-        Execute('wget --no-check-certificate {0}  -O /tmp/{1}'.format(PRESTO_RPM_URL, PRESTO_RPM_NAME))
-        Execute('export JAVA8_HOME={0} && rpm -i /tmp/{1}'.format(java_home, PRESTO_RPM_NAME))
+        from params import java_home, presto_rpm_download_url, presto_rpm_dir_name
+        try:
+            Execute('rpm -e presto-server-rpm')
+        except ExecutionFailed:
+            print "package presto-server-rpm is not installed"
+        Execute('wget --no-check-certificate {0}  -O /tmp/{1}'.format(presto_rpm_download_url, presto_rpm_dir_name))
+        Execute('export JAVA8_HOME={0} && rpm -i /tmp/{1}'.format(java_home, presto_rpm_dir_name))
         self.configure(env)
 
     def stop(self, env):

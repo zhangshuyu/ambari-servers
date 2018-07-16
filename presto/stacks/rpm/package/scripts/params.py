@@ -19,7 +19,9 @@ from resource_management.libraries.script.script import Script
 config = Script.get_config()
 
 #add by evan
-presto_base_dir = config['configurations']['env']['presto_base_dir']
+presto_rpm_download_url = config['configurations']['env.properties']['presto_rpm_download_url']
+presto_rpm_dir_name = presto_rpm_download_url.split('/')[-1]
+presto_cli_download_url = config['configurations']['env.properties']['presto_cli_download_url']
 
 node_properties = config['configurations']['node.properties']
 jvm_config = config['configurations']['jvm.config']

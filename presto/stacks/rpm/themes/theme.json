@@ -80,6 +80,23 @@
                       "column-span": "1"
                     }
                   ]
+                },
+                {
+                  "name": "section-env-config",
+                  "display-name": "env Config",
+                  "row-index": "3",
+                  "column-index": "0",
+                  "row-span": "1",
+                  "column-span": "1",
+                  "subsections": [
+                    {
+                      "name": "subsection-env-config",
+                      "row-index": "0",
+                      "column-index": "0",
+                      "row-span": "1",
+                      "column-span": "1"
+                    }
+                  ]
                 }
               ]
             }
@@ -133,6 +150,14 @@
         {
           "config": "jvm.config/jvm.config",
           "subsection-name": "subsection-jvm-config"
+        },
+        {
+          "config": "env.properties/presto_rpm_download_url",
+          "subsection-name": "subsection-env-config"
+        },
+        {
+          "config": "env.properties/presto_cli_download_url",
+          "subsection-name": "subsection-env-config"
         }
       ]
     },
@@ -209,6 +234,18 @@
       },
       {
         "config": "jvm.config/jvm.config",
+        "widget": {
+          "type": "text-area"
+        }
+      },
+      {
+        "config": "env.properties/presto_rpm_download_url",
+        "widget": {
+          "type": "text-area"
+        }
+      },
+      {
+        "config": "env.properties/presto_cli_download_url",
         "widget": {
           "type": "text-area"
         }

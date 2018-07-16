@@ -21,8 +21,9 @@ from common import PRESTO_CLI_URL
 
 class Cli(Script):
     def install(self, env):
+        from params import presto_cli_download_url
         Execute('mkdir -p /usr/lib/presto/bin')
-        Execute('wget --no-check-certificate {0} -O /usr/lib/presto/bin/presto-cli'.format(PRESTO_CLI_URL))
+        Execute('wget --no-check-certificate {0} -O /usr/lib/presto/bin/presto-cli'.format(presto_cli_download_url))
         Execute('chmod +x /usr/lib/presto/bin/presto-cli')
 
     def status(self, env):
