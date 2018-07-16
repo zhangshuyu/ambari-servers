@@ -15,6 +15,7 @@
 import uuid
 import os.path as path
 
+from resource_management import *
 from resource_management.libraries.script.script import Script
 from resource_management.core.resources.system import Execute
 from resource_management.core.exceptions import ExecutionFailed
@@ -38,12 +39,12 @@ class Worker(Script):
         Execute('{0} stop'.format(daemon_control_script))
 
     def start(self, env):
-        from params import daemon_control_script
+        from params import daemon_control_script, presto_pid_file
         self.configure(self)
         Execute('{0} start'.format(daemon_control_script))
+        Execute('cat /var/lib/presto/var/run/launcher.pid > {0}'.format(presto_pid_file), user='presto')
 
     def status(self, env):
-        from resource_management import *
         from params import daemon_control_script, presto_pid_file
         # Execute('{0} status'.format(daemon_control_script))
         check_process_status(presto_pid_file)

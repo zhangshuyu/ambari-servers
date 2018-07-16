@@ -14,7 +14,7 @@
 
 import uuid
 import os.path as path
-
+from resource_management import *
 from resource_management.libraries.script.script import Script
 from resource_management.core.resources.system import Execute
 from resource_management.core.exceptions import ExecutionFailed
@@ -39,9 +39,11 @@ class Coordinator(Script):
 
     def start(self, env):
         from params import daemon_control_script, config_properties, \
-            host_info
+            host_info, presto_pid_file
         self.configure(env)
         Execute('{0} start'.format(daemon_control_script))
+
+        Execute('cat /var/lib/presto/var/run/launcher.pid > {0}'.format(presto_pid_file), user='presto')
         # if 'presto_worker_hosts' in host_info.keys():
         #     all_hosts = host_info['presto_worker_hosts'] + \
         #         host_info['presto_coordinator_hosts']
@@ -53,7 +55,6 @@ class Coordinator(Script):
         #     all_hosts)
 
     def status(self, env):
-        from resource_management import *
         from params import daemon_control_script, presto_pid_file
         # Execute('{0} status'.format(daemon_control_script))
         check_process_status(presto_pid_file)
