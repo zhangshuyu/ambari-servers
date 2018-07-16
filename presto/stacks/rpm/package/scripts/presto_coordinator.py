@@ -15,9 +15,9 @@
 import uuid
 import os.path as path
 
-from resource_management import *
 from resource_management.libraries.script.script import Script
 from resource_management.core.resources.system import Execute
+from resource_management.core.exceptions import ExecutionFailed
 from common import create_connectors,\
     delete_connectors
 from presto_client import smoketest_presto, PrestoClient
@@ -53,6 +53,7 @@ class Coordinator(Script):
         #     all_hosts)
 
     def status(self, env):
+        from resource_management import *
         from params import daemon_control_script, presto_pid_file
         # Execute('{0} status'.format(daemon_control_script))
         check_process_status(presto_pid_file)
