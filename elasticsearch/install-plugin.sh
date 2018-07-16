@@ -6,7 +6,7 @@ install(){
     echo "创建 /var/lib/ambari-server/resources/stacks/HDP/2.6/services/ELASTICSEARCH"
     mkdir -p /var/lib/ambari-server/resources/stacks/HDP/2.6/services/ELASTICSEARCH
     fi
-    cp -R stacks/* /var/lib/ambari-server/resources/stacks/HDP/2.6/services/ELASTICSEARCH/
+    cp -R conf/* /var/lib/ambari-server/resources/stacks/HDP/2.6/services/ELASTICSEARCH/
 
     # common-services
     #if [ ! -d "/var/lib/ambari-server/resources/common-services/ELASTICSEARCH/6.3.0" ];then
