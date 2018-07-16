@@ -16,7 +16,7 @@
           {
             "name": "presto_web",
             "label": "Presto Web",
-            "component_name": "PRESTO_WEB",
+            "component_name": "PRESTO_COORDINATOR",
             "requires_user_name": "false",
             "url":"%@://%@:%@",
             "port":{
