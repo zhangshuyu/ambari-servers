@@ -50,11 +50,11 @@ class Master(Script):
             pwd.getpwnam(params.elastic_user)
             # setup limits
             with open("/etc/security/limits.conf","r") as f:
-                setup = False
+                setup = True
                 lines = f.readlines()
                 for line in lines:
                     if "elasticsearch" in line:
-                        setup = True
+                        setup = False
                         break
                 if setup:
                     cmd = format('echo "elasticsearch        -       nofile          65536" >> /etc/security/limits.conf')
