@@ -26,8 +26,8 @@ import time
 from resource_management import *
 from elastic_common import kill_process
 
-class Master(Script):
 
+class Master(Script):
     # Install Elasticsearch
     def install(self, env):
         # Import properties defined in -config.xml file from the params class
@@ -41,15 +41,23 @@ class Master(Script):
         self.install_packages(env)
 
         # Create user and group for Elasticsearch if they don't exist
-        try: grp.getgrnam(params.elastic_group)
-        except KeyError: Group(group_name=params.elastic_group)
+        try:
+            grp.getgrnam(params.elastic_group)
+        except KeyError:
+            Group(group_name=params.elastic_group)
 
-        try: pwd.getpwnam(params.elastic_user)
-        except KeyError: User(username=params.elastic_user,
-                              gid=params.elastic_group,
-                              groups=[params.elastic_group],
-                              ignore_failures=True
-                             )
+        try:
+            pwd.getpwnam(params.elastic_user)
+            cmd = format('echo "elasticsearch        -       nofile          65536" >> /etc/security/limits.conf')
+            Execute(cmd, user="root")
+            cmd = format('echo "elasticsearch        -       nproc           4096" >> /etc/security/limits.conf')
+            Execute(cmd, user="root")
+        except (ExecutionFailed, KeyError),e:
+            User(username=params.elastic_user,
+                 gid=params.elastic_group,
+                 groups=[params.elastic_group],
+                 ignore_failures=True
+                 )
 
         # Create Elasticsearch directories
         Directory([params.elastic_base_dir, params.elastic_log_dir, params.elastic_pid_dir],
@@ -58,7 +66,7 @@ class Master(Script):
                   owner=params.elastic_user,
                   group=params.elastic_group,
                   create_parents=True
-                 )
+                  )
 
         # Create empty Elasticsearch install log
         File(params.elastic_install_log,
@@ -66,7 +74,7 @@ class Master(Script):
              owner=params.elastic_user,
              group=params.elastic_group,
              content=''
-            )
+             )
 
         # Download Elasticsearch
         cmd = format("cd {elastic_base_dir}; wget {elastic_download} -O elasticsearch.tar.gz -a {elastic_install_log}")
@@ -102,7 +110,6 @@ class Master(Script):
 
         Execute('echo "Install complete"')
 
-
     def configure(self, env):
         # Import properties defined in -config.xml file from the params class
         import params
@@ -118,19 +125,19 @@ class Master(Script):
                               configurations=configurations),
              owner=params.elastic_user,
              group=params.elastic_group
-            )
+             )
 
         # Install HEAD and HQ puglins - these plugins are not currently supported by ES 5.x
-        #cmd = format("{elastic_base_dir}/bin/elasticsearch-plugin install mobz/elasticserach-head")
-        #Execute(cmd)
+        # cmd = format("{elastic_base_dir}/bin/elasticsearch-plugin install mobz/elasticserach-head")
+        # Execute(cmd)
 
         # Attempt to remove X-Pack plugin
-        #cmd = format("{elastic_base_dir}/bin/elasticsearch-plugin remove x-pack")
-        #Execute(cmd)
+        # cmd = format("{elastic_base_dir}/bin/elasticsearch-plugin remove x-pack")
+        # Execute(cmd)
 
         # Install X-Pack plugin
-        #cmd = format("{elastic_base_dir}/bin/elasticsearch-plugin install x-pack")
-        #Execute(cmd)
+        # cmd = format("{elastic_base_dir}/bin/elasticsearch-plugin install x-pack")
+        # Execute(cmd)
 
         # Ensure all files owned by elasticsearch user
         cmd = format("chown -R {elastic_user}:{elastic_group} {elastic_base_dir}")
@@ -151,9 +158,8 @@ class Master(Script):
 
         # Stop Elasticsearch
         kill_process(params.elastic_pid_file, params.elastic_user, params.elastic_log_dir)
-        #cmd = format("kill `cat {elastic_pid_file}`")
-        #Execute(cmd, user=params.elastic_user, only_if=format("test -f {elastic_pid_file}"))
-
+        # cmd = format("kill `cat {elastic_pid_file}`")
+        # Execute(cmd, user=params.elastic_user, only_if=format("test -f {elastic_pid_file}"))
 
     def start(self, env):
         # Import properties defined in -config.xml file from the params class
@@ -170,7 +176,6 @@ class Master(Script):
         cmd = format("{elastic_base_dir}/bin/elasticsearch -d -p {elastic_pid_file}")
         Execute(cmd, user=params.elastic_user)
 
-
     def status(self, env):
         # Import properties defined in -env.xml file from the status_params class
         import status_params
@@ -179,13 +184,14 @@ class Master(Script):
         #  format('{elastic_pid_file}')
         env.set_params(status_params)
 
-        #try:
+        # try:
         #    pid_file = glob.glob(status_params.elastic_pid_file)[0]
-        #except IndexError:
+        # except IndexError:
         #    pid_file = ''
 
         # Use built-in method to check status using pidfile
         check_process_status(status_params.elastic_pid_file)
+
 
 if __name__ == "__main__":
     Master().execute()

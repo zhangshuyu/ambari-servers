@@ -44,12 +44,18 @@ class Master(Script):
         try: grp.getgrnam(params.elastic_group)
         except KeyError: Group(group_name=params.elastic_group)
 
-        try: pwd.getpwnam(params.elastic_user)
-        except KeyError: User(username=params.elastic_user,
-                              gid=params.elastic_group,
-                              groups=[params.elastic_group],
-                              ignore_failures=True
-                             )
+        try:
+            pwd.getpwnam(params.elastic_user)
+            cmd = format('echo "elasticsearch        -       nofile          65536" >> /etc/security/limits.conf')
+            Execute(cmd, user="root")
+            cmd = format('echo "elasticsearch        -       nproc           4096" >> /etc/security/limits.conf')
+            Execute(cmd, user="root")
+        except (ExecutionFailed, KeyError),e:
+            User(username=params.elastic_user,
+                 gid=params.elastic_group,
+                 groups=[params.elastic_group],
+                 ignore_failures=True
+                 )
 
         # Create Elasticsearch directories
         Directory([params.elastic_base_dir, params.elastic_log_dir, params.elastic_pid_dir],

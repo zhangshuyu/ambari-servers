@@ -100,5 +100,5 @@
         <name>xpack_security_enabled</name>
         <value>false</value>
         <description>Enable X-Pack security module</description>
-    </property>bootstrap.system_call_filter
+    </property>
 </configuration>
