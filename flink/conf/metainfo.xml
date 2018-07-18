@@ -9,28 +9,28 @@
             <version>1.4.2</version>
             <components>
                 <component>
-                  <name>FLINK_MASTER</name>
-                  <displayName>Flink Master</displayName>
-                  <category>MASTER</category>
-                  <cardinality>1</cardinality>
-                  <commandScript>
-                    <script>scripts/flink.py</script>
-                    <scriptType>PYTHON</scriptType>
-                    <timeout>10000</timeout>
-                  </commandScript>
+                    <name>FLINK_MASTER</name>
+                    <displayName>Flink Master</displayName>
+                    <category>MASTER</category>
+                    <cardinality>1</cardinality>
+                    <commandScript>
+                        <script>scripts/flink.py</script>
+                        <scriptType>PYTHON</scriptType>
+                        <timeout>10000</timeout>
+                    </commandScript>
                 </component>
             </components>
             <osSpecifics>
-              <osSpecific>
-                <osFamily>redhat7</osFamily>
-              </osSpecific>
+                <osSpecific>
+                    <osFamily>any</osFamily>
+                </osSpecific>
             </osSpecifics>
             <requiredServices>
-        		<service>YARN</service>
-      		</requiredServices>
-      	    <configuration-dependencies>
-	        	<config-type>flink-ambari-config</config-type>      	   
-      	    </configuration-dependencies>
+                <service>YARN</service>
+            </requiredServices>
+            <configuration-dependencies>
+                <config-type>flink-ambari-config</config-type>
+            </configuration-dependencies>
             <restartRequiredAfterChange>false</restartRequiredAfterChange>
         </service>
     </services>

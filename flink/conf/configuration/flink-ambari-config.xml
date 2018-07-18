@@ -13,7 +13,7 @@
 
   <property>
     <name>flink_download_url</name>
-    <value>http://zdp-center/tars/flink-1.4.2-bin-hadoop27-scala_2.11.tgz</value>
+    <value>http://hdp-server/tars/flink-1.4.2-bin-hadoop27-scala_2.11.tgz</value>
     <description>flink download url</description>
   </property>
   
