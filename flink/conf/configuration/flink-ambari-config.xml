@@ -65,13 +65,6 @@
     <value>true</value>
     <description>If false, will compile Flink from source instead</description>
   </property>   
-  
-   <property>
-    <name>flink_start_on_yarn</name>
-    <value>false</value>
-    <description>is flink start on yarn</description>
-  </property> 
-  
 
   <property>
     <name>hadoop_conf_dir</name>
