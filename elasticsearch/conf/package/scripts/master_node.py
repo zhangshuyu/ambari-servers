@@ -24,7 +24,7 @@ import grp
 import signal
 import time
 from resource_management import *
-from elastic_common import kill_process
+from elastic_common import kill_process, env_setup
 
 
 class Master(Script):
@@ -48,26 +48,14 @@ class Master(Script):
 
         try:
             pwd.getpwnam(params.elastic_user)
-            # setup limits
-            with open("/etc/security/limits.conf","r") as f:
-                setup = True
-                lines = f.readlines()
-                for line in lines:
-                    if "elasticsearch" in line:
-                        setup = False
-                        break
-                if setup:
-                    cmd = format('echo "elasticsearch        -       nofile          65536" >> /etc/security/limits.conf')
-                    Execute(cmd, user="root")
-                    cmd = format('echo "elasticsearch        -       nproc           4096" >> /etc/security/limits.conf')
-                    Execute(cmd, user="root")
-        except (ExecutionFailed, KeyError),e:
+        except KeyError:
             User(username=params.elastic_user,
                  gid=params.elastic_group,
                  groups=[params.elastic_group],
                  ignore_failures=True
                  )
-
+        # setup env
+        env_setup()
         # Create Elasticsearch directories
         Directory([params.elastic_base_dir, params.elastic_log_dir, params.elastic_pid_dir],
                   mode=0755,
