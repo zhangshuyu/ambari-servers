@@ -32,6 +32,15 @@ class Worker(Script):
             print "package presto-server-rpm is not installed"
         Execute('wget --no-check-certificate {0} -O /tmp/{1}'.format(presto_rpm_download_url, presto_rpm_dir_name))
         Execute('export JAVA8_HOME={0} && rpm -i /tmp/{1}'.format(java_home, presto_rpm_dir_name))
+
+        # setup requiretty disable
+        with open("/etc/sudoers","r") as f:
+            lines = f.readlines()
+        with open("/etc/sudoers","w") as f_w:
+            for line in lines:
+                if "Defaults    requiretty" in line:
+                    continue
+                f_w.write(line)
         self.configure(env)
 
     def stop(self, env):

@@ -46,10 +46,19 @@ class Master(Script):
 
         try:
             pwd.getpwnam(params.elastic_user)
-            cmd = format('echo "elasticsearch        -       nofile          65536" >> /etc/security/limits.conf')
-            Execute(cmd, user="root")
-            cmd = format('echo "elasticsearch        -       nproc           4096" >> /etc/security/limits.conf')
-            Execute(cmd, user="root")
+            # setup limits
+            with open("/etc/security/limits.conf","r") as f:
+                setup = False
+                lines = f.readlines()
+                for line in lines:
+                    if "elasticsearch" in line:
+                        setup = True
+                        break
+                if setup:
+                    cmd = format('echo "elasticsearch        -       nofile          65536" >> /etc/security/limits.conf')
+                    Execute(cmd, user="root")
+                    cmd = format('echo "elasticsearch        -       nproc           4096" >> /etc/security/limits.conf')
+                    Execute(cmd, user="root")
         except (ExecutionFailed, KeyError),e:
             User(username=params.elastic_user,
                  gid=params.elastic_group,

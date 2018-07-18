@@ -28,7 +28,7 @@
       <components>
         <component>
           <name>PRESTO_COORDINATOR</name>
-          <displayName>Presto coordinator</displayName>
+          <displayName>Presto Coordinator</displayName>
           <category>MASTER</category>
           <cardinality>1</cardinality>
           <versionAdvertised>true</versionAdvertised>
@@ -41,7 +41,7 @@
 
         <component>
           <name>PRESTO_WORKER</name>
-          <displayName>Presto worker</displayName>
+          <displayName>Presto Worker</displayName>
           <category>SLAVE</category>
           <cardinality>0+</cardinality>
           <versionAdvertised>true</versionAdvertised>
@@ -53,7 +53,7 @@
 
         <component>
           <name>PRESTO_CLI</name>
-          <displayName>Presto command line interface</displayName>
+          <displayName>Presto Client</displayName>
           <category>CLIENT</category>
           <cardinality>1+</cardinality>
           <versionAdvertised>true</versionAdvertised>
