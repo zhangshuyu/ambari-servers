@@ -59,7 +59,7 @@ class Coordinator(Script):
         self.configure(env)
         Execute('{0} start'.format(daemon_control_script))
 
-        Execute('cat /var/lib/presto/var/run/launcher.pid > {0}'.format(presto_pid_file), user='presto')
+        # Execute('cat /var/lib/presto/var/run/launcher.pid > {0}'.format(presto_pid_file), user='presto')
         # if 'presto_worker_hosts' in host_info.keys():
         #     all_hosts = host_info['presto_worker_hosts'] + \
         #         host_info['presto_coordinator_hosts']

@@ -58,7 +58,7 @@ class Worker(Script):
         from params import daemon_control_script, presto_pid_file
         self.configure(self)
         Execute('{0} start'.format(daemon_control_script))
-        Execute('cat /var/lib/presto/var/run/launcher.pid > {0}'.format(presto_pid_file), user='presto')
+        # Execute('cat /var/lib/presto/var/run/launcher.pid > {0}'.format(presto_pid_file), user='presto')
 
     def status(self, env):
         from params import daemon_control_script, presto_pid_file
