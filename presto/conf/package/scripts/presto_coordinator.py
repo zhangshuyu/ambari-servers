@@ -34,12 +34,19 @@ class Coordinator(Script):
 
         # setup requiretty disable
         with open("/etc/sudoers","r") as f:
+            requiretty = False
             lines = f.readlines()
-        with open("/etc/sudoers","w") as f_w:
             for line in lines:
                 if "Defaults    requiretty" in line:
-                    continue
-                f_w.write(line)
+                    requiretty = True
+                    break
+        if requiretty:
+            Execute('chmod +w /etc/sudoers')
+            with open("/etc/sudoers","w") as f_w:
+                for line in lines:
+                    if "Defaults    requiretty" in line:
+                        continue
+                    f_w.write(line)
         self.configure(env)
 
     def stop(self, env):
