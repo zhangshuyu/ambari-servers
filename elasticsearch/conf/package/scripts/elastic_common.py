@@ -58,7 +58,7 @@ def kill_process(pid_file, user, log_dir):
 
 def env_setup():
     # setup limits
-    with os.open("/etc/security/limits.conf", "r") as f:
+    with open("/etc/security/limits.conf", "r") as f:
         limits = True
         lines = f.readlines()
         for line in lines:
@@ -76,7 +76,7 @@ def env_setup():
             Execute(cmd, user="root")
     # setup vm.max_map_count
     if os.path.exists("/etc/sysctl.conf"):
-        with os.open("/etc/sysctl.conf", "r") as f:
+        with open("/etc/sysctl.conf", "r") as f:
             max_map_count = True
             lines = f.readlines()
             for line in lines:
