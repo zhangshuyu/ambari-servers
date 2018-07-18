@@ -18,6 +18,7 @@ limitations under the License.
 import sys
 import os
 import glob
+from resource_management.core.exceptions import ExecutionFailed
 from resource_management.core.resources.system import Execute, File
 from resource_management.libraries.functions.format import format
 from resource_management.libraries.functions.get_user_call_output import get_user_call_output
@@ -75,6 +76,11 @@ def env_setup():
             cmd = format('echo "elasticsearch hard memlock unlimited " >> /etc/security/limits.conf')
             Execute(cmd, user="root")
     # setup vm.max_map_count
+    try:
+        cmd = format('sysctl -w vm.max_map_count=262144')
+        Execute(cmd, user="root")
+    except ExecutionFailed, e:
+        print e
     if os.path.exists("/etc/sysctl.conf"):
         with open("/etc/sysctl.conf", "r") as f:
             max_map_count = True

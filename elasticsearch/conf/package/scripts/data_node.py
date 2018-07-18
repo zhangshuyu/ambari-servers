@@ -54,8 +54,7 @@ class Master(Script):
                  groups=[params.elastic_group],
                  ignore_failures=True
                  )
-        # setup env
-        env_setup()
+
         # Create Elasticsearch directories
         Directory([params.elastic_base_dir, params.elastic_log_dir, params.elastic_pid_dir],
                   mode=0755,
@@ -168,6 +167,8 @@ class Master(Script):
 
         # Configure Elasticsearch
         self.configure(env)
+        # setup env
+        env_setup()
 
         # Start Elasticsearch
         cmd = format("{elastic_base_dir}/bin/elasticsearch -d -p {elastic_pid_file}")
